@@ -10,7 +10,7 @@ function App() {
 
   const addFriend = () => {
     Axios
-      .post('http://alz-mern-beginner.herokuapp.com//addFriend', { name, age })
+      .post('http://alz-mern-beginner.herokuapp.com/addFriend', { name, age })
       .then((response) => setListOfFriends([...listOfFriends, { _id: response.data._id, name, age }]))
       .catch(err => alert(err));
   };
@@ -19,7 +19,7 @@ function App() {
     const newAge = prompt('Enter New Age');
 
     Axios
-      .put('http://alz-mern-beginner.herokuapp.com//update', { newAge, id })
+      .put('http://alz-mern-beginner.herokuapp.com/update', { newAge, id })
       .then(setListOfFriends(listOfFriends.map(friend => {
         return friend._id === id ? { ...friend, age: newAge } : friend;
       })
@@ -27,7 +27,7 @@ function App() {
   };
 
   const deleteFriend = (id) => {
-    Axios.delete(`http://alz-mern-beginner.herokuapp.com//delete/${id}`)
+    Axios.delete(`http://alz-mern-beginner.herokuapp.com/delete/${id}`)
       .then(setListOfFriends(listOfFriends.filter(friend => {
         return friend._id !== id;
       })))
@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     Axios
-      .get('http://alz-mern-beginner.herokuapp.com//read')
+      .get('http://alz-mern-beginner.herokuapp.com/read')
       .then((response) => setListOfFriends(response.data));
   }, []);
 
